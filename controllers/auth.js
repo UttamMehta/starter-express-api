@@ -117,7 +117,7 @@ async function singleUserAppointment(req, res) {
     if (userData.appointment === 0)
       return res.send({ message: "Not any appointment book" });
 
-    return res.send({ allAppointment: userData.appointment });
+    return res.send({ allAppointment: userData[0].appointment });
   } catch (err) {
     return res.status(500).send({
       error: "Server error please try later",
