@@ -107,8 +107,8 @@ async function appointment(req, res) {
 async function singleUserAppointment(req, res) {
   try {
     let { email } = req.body;
-    // console.log(Appointment);
-    if (!email) res.status(404).send({ message: "Please Login" });
+    console.log(email);
+    if (!email) return res.status(404).send({ message: "Please Login" });
 
     let userData = await User.find({ email: email });
     if (userData.length === 0)
@@ -117,7 +117,7 @@ async function singleUserAppointment(req, res) {
     if (userData.appointment === 0)
       return res.send({ message: "Not any appointment book" });
 
-    return res.send({ allAppointment: userData.appointment });
+    return res.send({ allAppointment: userData });
   } catch (err) {
     return res.status(500).send({
       error: "Server error please try later",
