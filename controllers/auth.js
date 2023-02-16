@@ -3,6 +3,7 @@ const jwt = require("jsonwebtoken");
 const config = require("../config/config");
 const axios = require("axios");
 const brcypt = require("bcryptjs");
+const { response } = require("express");
 
 function generateToken(user) {
   const { _id, name, email, image } = user;
@@ -86,7 +87,6 @@ async function appointment(req, res) {
     // let user = await User.findOne({
     //   email,
     // });
-
     // if (!name) {
     //   return res.status(400).send({
     //     error: "User does not exists",
@@ -100,6 +100,27 @@ async function appointment(req, res) {
   } catch (err) {
     return res.status(500).send({
       error: "Something went wrong",
+    });
+  }
+}
+
+async function singleUserAppointment(req, res) {
+  try {
+    let { email } = req.body;
+    // console.log(Appointment);
+    if (!email) res.status(404).send({ message: "Please Login" });
+
+    let userData = await User.find({ email: email });
+    if (userData.length === 0)
+      return res.status(404).send({ message: "No Such User" });
+
+    if (userData.appointment === 0)
+      return res.send({ message: "Not any appointment book" });
+
+    return res.send({ allAppointment: userData.appointment });
+  } catch (err) {
+    return res.status(500).send({
+      error: "Server error please try later",
     });
   }
 }
@@ -243,4 +264,5 @@ module.exports = {
   getLoggedInUser,
   getAllUser,
   appointment,
+  singleUserAppointment,
 };
