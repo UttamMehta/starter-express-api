@@ -21,6 +21,11 @@ const generateotpRoute = require("./routes/generateotp");
 
 const app = express();
 
+app.all("/", (req, res) => {
+  console.log("Just got a request!");
+  res.send("Yo!");
+});
+
 app.use(express.json());
 app.use(cors());
 app.use(morgan("tiny"));
@@ -37,11 +42,11 @@ app.use("/generateotp", generateotpRoute);
 
 // app.use('/api/comment', commentRouter);
 
-app.use("/", express.static("static"));
+// app.use("/", express.static("static"));
 
-app.get("*", (req, res) => {
-  res.sendFile(path.join(__dirname, "static/index.html"));
-});
+// app.get("*", (req, res) => {
+//   res.sendFile(path.join(__dirname, "static/index.html"));
+// });
 
 const port = process.argv[2] || 3035;
 
