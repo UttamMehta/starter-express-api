@@ -1,14 +1,14 @@
-// const express = require('express')
-// const app = express()
-// app.all('/', (req, res) => {
-//     console.log("Just got a request!")
-//     res.send('Yo!')
-// })
-// app.listen(process.env.PORT || 3000)
+const express = require("express");
+const app = express();
+app.all("/", (req, res) => {
+  console.log("Just got a request!");
+  res.send("Yo!");
+});
+app.listen(process.env.PORT || 3000);
 
 // require("dotenv").config();
 
-const express = require("express");
+// const express = require("express");
 // const cors = require("cors");
 // const morgan = require("morgan");
 // const path = require("path");
@@ -19,12 +19,12 @@ const express = require("express");
 // const signUpRouter = require("./routes/signUp");
 // const generateotpRoute = require("./routes/generateotp");
 
-const app = express();
+// const app = express();
 
-app.all("/", (req, res) => {
-  console.log("Just got a request!");
-  res.send("Yo!");
-});
+// app.all("/", (req, res) => {
+//   console.log("Just got a request!");
+//   res.send("Yo!");
+// });
 
 // app.use(express.json());
 // app.use(cors());
