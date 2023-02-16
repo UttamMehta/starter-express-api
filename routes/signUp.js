@@ -6,4 +6,10 @@ signUpRouter.post("/", register);
 signUpRouter.post("/logIn", login);
 signUpRouter.post("/appoint", appointment);
 
+signUpRouter.get("*", (req, res) => {
+  res.status(400).send({
+    message: "Wrong Search",
+  });
+});
+
 module.exports = signUpRouter;
